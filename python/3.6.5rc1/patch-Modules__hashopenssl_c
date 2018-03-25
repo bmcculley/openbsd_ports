@@ -1,0 +1,14 @@
+diff --git a/_hashopenssl.c.orig b/_hashopenssl.c
+index 8f6185c..9fc23a3 100644
+--- a/_hashopenssl.c.orig
++++ b/_hashopenssl.c
+@@ -37,7 +37,8 @@ module _hashlib
+ #define HASH_OBJ_CONSTRUCTOR 0
+ #endif
+ 
+-#if (OPENSSL_VERSION_NUMBER < 0x10100000L) || defined(LIBRESSL_VERSION_NUMBER)
++#if (OPENSSL_VERSION_NUMBER < 0x10100000L) || \
++    defined(LIBRESSL_VERSION_NUMBER)
+ /* OpenSSL < 1.1.0 */
+ #define EVP_MD_CTX_new EVP_MD_CTX_create
+ #define EVP_MD_CTX_free EVP_MD_CTX_destroy

@@ -1,0 +1,13 @@
+diff --git a/configure.ac.orig b/configure.ac
+index 0ec0936..f245556 100644
+--- a/configure.ac.orig
++++ b/configure.ac
+@@ -117,7 +117,7 @@ VERSION=PYTHON_VERSION
+ 
+ # Version number of Python's own shared library file.
+ AC_SUBST(SOVERSION)
+-SOVERSION=1.0
++SOVERSION=${LIBpython3.6m_VERSION}
+ 
+ # The later defininition of _XOPEN_SOURCE disables certain features
+ # on Linux, so we need _GNU_SOURCE to re-enable them (makedev, tm_zone).
