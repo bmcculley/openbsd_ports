@@ -1,0 +1,13 @@
+diff --git a/setup.py.orig b/setup.py
+index 8536c35..df33db8 100644
+--- a/setup.py.orig
++++ b/setup.py
+@@ -855,6 +855,8 @@ class PyBuildExt(build_ext):
+                                                      'termcap'):
+                 readline_libs.append('termcap')
+             exts.append( Extension('readline', ['readline.c'],
++                                   extra_compile_args=['-nostdinc'],
++                                   include_dirs=['/usr/include'],
+                                    library_dirs=['/usr/lib/termcap'],
+                                    extra_link_args=readline_extra_link_args,
+                                    libraries=readline_libs) )

@@ -1,0 +1,19 @@
+This isn't complete yet...
+
+There were a few notes that dumped out during compilation
+
+gcc -pthread -c -fno-strict-aliasing -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes  -O2 -pipe   -std=c99 -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Werror=implicit-function-declaration   -I. -I./Include    -DPy_BUILD_CORE -o Programs/_testembed.o ./Programs/_testembed.c
+gcc -pthread   -Wl,--export-dynamic -o Programs/_testembed Programs/_testembed.o libpython3.7m.a -lpthread  -lutil   -lm  
+libpython3.7m.a(getpath.o): In function `absolutize':
+./Modules/getpath.c:295: warning: warning: wcscpy() is almost always misused, please use wcslcpy()
+libpython3.7m.a(pystrtod.o): In function `format_float_short':
+Python/pystrtod.c:1224: warning: warning: sprintf() is often misused, please use snprintf()
+libpython3.7m.a(getpath.o): In function `ismodule':
+./Modules/getpath.c:187: warning: warning: wcscat() is almost always misused, please use wcslcat()
+libpython3.7m.a(traceback.o): In function `_Py_DisplaySourceLine':
+Python/traceback.c:472: warning: warning: strcpy() is almost always misused, please use strlcpy()
+sed -e "s,@EXENAME@,/usr/local/bin/python3.7m," < ./Misc/python-config.in >python-config.py
+LC_ALL=C sed -e 's,\$(\([A-Za-z0-9_]*\)),\$\{\1\},g' < Misc/python-config.sh >python-config
+
+There were some other things to look at as well earlier on.
+Just getting a start on this.
