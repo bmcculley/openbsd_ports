@@ -1,32 +1,23 @@
-diff --git a/_ssl.c.orig b/_ssl.c
-index f9e061d..4940aaf 100644
---- a/_ssl.c.orig
-+++ b/_ssl.c
+diff --git a/Modules/_ssl.c.orig b/Modules/_ssl.c
+index 4baabd5..15948e5 100644
+--- a/Modules/_ssl.c.orig
++++ b/Modules/_ssl.c
+@@ -65,7 +65,7 @@ static PySocketModule_APIObject PySocketModule;
+ #include "openssl/bio.h"
+ 
+ #ifndef HAVE_X509_VERIFY_PARAM_SET1_HOST
+-#  ifdef LIBRESSL_VERSION_NUMBER
++#  ifdef LIBRESSL_VERSION_NUMBER < 0x2070000fL
+ #    error "LibreSSL is missing X509_VERIFY_PARAM_set1_host(), see https://github.com/libressl-portable/portable/issues/381"
+ #  elif OPENSSL_VERSION_NUMBER > 0x1000200fL
+ #    define HAVE_X509_VERIFY_PARAM_SET1_HOST
 @@ -134,7 +134,8 @@ static void _PySSLFixErrno(void) {
  /* Include generated data (error codes) */
  #include "_ssl_data.h"
  
 -#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) && !defined(LIBRESSL_VERSION_NUMBER)
 +#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) && \
-+    !defined(LIBRESSL_VERSION_NUMBER)
++    (!defined(LIBRESSL_VERSION_NUMBER) || LIBRESSL_VERSION_NUMBER >= 0x2070000fL)
  #  define OPENSSL_VERSION_1_1 1
+ #  define PY_OPENSSL_1_1_API 1
  #endif
- 
-@@ -187,12 +188,17 @@ static void _PySSLFixErrno(void) {
- #ifndef OPENSSL_NO_SSL2
- #define OPENSSL_NO_SSL2
- #endif
-+#if defined(LIBRESSL_VERSION_NUMBER) && defined(WITH_THREAD)
-+#define HAVE_OPENSSL_CRYPTO_LOCK
-+#endif
- #else /* OpenSSL < 1.1.0 */
- #define HAVE_OPENSSL_CRYPTO_LOCK
- 
-+#if !defined(LIBRESSL_VERSION_NUMBER)
- #define TLS_method SSLv23_method
- #define TLS_client_method SSLv23_client_method
- #define TLS_server_method SSLv23_server_method
-+#endif
- 
- static int X509_NAME_ENTRY_set(const X509_NAME_ENTRY *ne)
- {
