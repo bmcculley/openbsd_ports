@@ -1,7 +1,7 @@
-diff --git a/_hashopenssl.c.orig b/_hashopenssl.c
+diff --git a/Modules/_hashopenssl.c.orig b/Modules/_hashopenssl.c
 index 8f6185c..9fc23a3 100644
---- a/_hashopenssl.c.orig
-+++ b/_hashopenssl.c
+--- a/Modules/_hashopenssl.c.orig
++++ b/Modules/_hashopenssl.c
 @@ -37,7 +37,8 @@ module _hashlib
  #define HASH_OBJ_CONSTRUCTOR 0
  #endif

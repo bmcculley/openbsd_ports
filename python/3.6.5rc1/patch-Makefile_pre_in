@@ -1,6 +1,6 @@
-diff --git a/Makefile.pre.in.orig b/Makefile.pre.in
+diff --git a/Makefile.pre.in.org b/Makefile.pre.in
 index 1c9ffea..a490f09 100644
---- a/Makefile.pre.in.orig
+--- a/Makefile.pre.in.org
 +++ b/Makefile.pre.in
 @@ -627,7 +627,7 @@ gdbhooks: $(BUILDPYTHON)-gdb.py
  

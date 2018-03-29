@@ -1,7 +1,7 @@
-diff --git a/test_locale.py.orig b/test_locale.py
+diff --git a/Lib/test/test_locale.py.orig b/Lib/test/test_locale.py
 index 650d737..a46fc3e 100644
---- a/test_locale.py.orig
-+++ b/test_locale.py
+--- a/Lib/test/test_locale.py.orig
++++ b/Lib/test/test_locale.py
 @@ -517,8 +517,12 @@ class TestMiscellaneous(unittest.TestCase):
          loc = locale.getlocale(locale.LC_CTYPE)
          if verbose:
